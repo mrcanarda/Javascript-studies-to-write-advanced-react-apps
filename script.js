@@ -149,6 +149,8 @@ const getBook = (id) => data.find((d) => d.id === id);
 
 // Destrcucturing
 
+/*
+
 const book = getBook(3);
 
 // const title = book.title;
@@ -250,6 +252,10 @@ function getTotalWeviesCount(book) {
 
 console.log(getTotalWeviesCount(book));
 
+*/
+
+// Map
+
 const books = getBooks();
 books;
 
@@ -267,3 +273,54 @@ const essentialData = books.map((book) => {
 });
 
 essentialData;
+
+// Filter
+
+const longBooksWithMovie = books
+  .filter((book) => book.pages > 500)
+  .filter((book) => book.hasMovieAdaptation);
+longBooksWithMovie;
+
+const adventureBooks = books
+  .filter((books) => books.genres.includes("adventure"))
+  .map((book) => book.title);
+
+adventureBooks;
+
+// REDUCE
+
+const pageAllBooks = books.reduce((acc, book) => acc + book.pages, 0);
+pageAllBooks;
+
+// SORT
+
+const sortMethod = [3, 7, 1, 9, 6, 2];
+const sorted = sortMethod.sort((a, b) => b - a);
+sorted;
+sortMethod;
+
+// SLICE ana degiiskeniiin etkilenmemesi icin
+
+const sortedByPages = books.slice().sort((a, b) => b.pages - a.pages);
+sortedByPages;
+
+// 1 Add book object to array
+const newBook = {
+  id: 6,
+  title: "Harry Potter and the Chamber of Secrets",
+  author: "J:K: Rowling",
+};
+
+const bookAfterAdd = [...books, newBook];
+bookAfterAdd;
+
+// 2 Delete book object from array
+const booksAfterDelete = bookAfterAdd.filter((book) => book.id !== 3);
+booksAfterDelete;
+
+// 3 Update book object in the array
+const booksAfterUpdate = booksAfterDelete.map((book) =>
+  book.id === 1 ? { ...book, pages: 1210 } : book
+);
+
+booksAfterUpdate;
